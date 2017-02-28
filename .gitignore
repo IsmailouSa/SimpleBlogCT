@@ -1,0 +1,12 @@
+bin
+obj
+*.user
+*.suo
+*.sln.docstate
+[Dd]ebug/
+[Rr]elease/
+*.obj
+*.pdb
+_ReSharper*
+Thumbs.db
+Desktop.ini
