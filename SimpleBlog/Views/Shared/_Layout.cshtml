@@ -6,11 +6,15 @@
 <!DOCTYPE html>
 
 <html>
-<head>
+<head runat="server">
     <meta name="viewport" content="width=device-width" />
-    <title>Simple Blog</title>
+    @RenderSection("Head", false)
+    <title>@ViewBag.Title - Simple Blog</title>
 </head>
 <body>
+    @{ 
+        SqlCommand cmd = new SqlCommand();
+    }
     <header>
         <h1>
             <img src="http://www.trakya.edu.tr/admin/tools/theme/www_v2/images/logo/tr/logo.png" />
@@ -24,6 +28,7 @@
         This page is under construction now ! <br />
         &copy; @DateTime.Now.Year
     </footer>
+    @RenderSection("Scripts", false)
     
 </body>
 </html>
