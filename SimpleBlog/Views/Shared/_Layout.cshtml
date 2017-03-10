@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Simple Blog</title>
+</head>
+<body>
+    <header>
+        <h1>
+            <img src="http://www.trakya.edu.tr/admin/tools/theme/www_v2/images/logo/tr/logo.png" />
+            <a href="@Url.RouteUrl("Home")">Simple Blog</a>
+        </h1>
+        <a href="@Url.RouteUrl("Login")">Login</a>
+    </header>
+    @RenderBody()
+
+    <footer>
+        This page is under construction now ! <br />
+        &copy; @DateTime.Now.Year
+    </footer>
+    
+</body>
+</html>
