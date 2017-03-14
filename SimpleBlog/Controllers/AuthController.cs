@@ -12,12 +12,16 @@ namespace SimpleBlog.Controllers
         // GET: Auth
         public ActionResult Login()
         {
-            return View();
+            return View(new AuthLogin());
         }
         [HttpPost]
         public ActionResult Login(AuthLogin form)
         {
-            return Content("Hi " + form.Username + ", your password is : " + form.Password);
+          if(!ModelState.IsValid)
+            {
+                return View(form);
+            }
+            return Content("The form is Valid");
         }
     }
 }
