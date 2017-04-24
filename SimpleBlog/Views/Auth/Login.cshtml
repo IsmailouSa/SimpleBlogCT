@@ -1,5 +1,5 @@
 ﻿@model SimpleBlog.ViewModels.AuthLogin
-@{ 
+@{
     ViewBag.Title = "Login Page";
 }
 
@@ -10,7 +10,7 @@
 {
     @Html.ValidationSummary()
     <div>
-        @Html.LabelFor(x=>x.Username)
+        @Html.LabelFor(x => x.Username)
         @Html.EditorFor(x => x.Username)
     </div>
     <div>

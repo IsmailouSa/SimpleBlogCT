@@ -1,4 +1,4 @@
-﻿
+﻿@using System.Web.Optimization
 @{
     Layout = null;
 }
@@ -10,11 +10,9 @@
     <meta name="viewport" content="width=device-width" />
     @RenderSection("Head", false)
     <title>@ViewBag.Title - Simple Blog</title>
+    @Styles.Render("~/styles")
 </head>
 <body>
-    @{ 
-        SqlCommand cmd = new SqlCommand();
-    }
     <header>
         <h1>
             <img src="http://www.trakya.edu.tr/admin/tools/theme/www_v2/images/logo/tr/logo.png" />
@@ -24,15 +22,71 @@
     </header>
     @RenderBody()
     @*<form method="post">
-        <input type="text" name="Username" />
-        <input type="password" name="Password" />
-        <input type="submit" />
-    </form>*@
+            <input type="text" name="Username" />
+            <input type="password" name="Password" />
+            <input type="submit" />
+        </form>*@
     <footer>
         This page is under construction now ! <br />
-        &copy; @DateTime.Now.Year
+        &copy; @DateTime.Now.Year - Isma
     </footer>
     @RenderSection("Scripts", false)
-    
+
 </body>
 </html>
+
+
+
+@*@using System.Web.Optimization
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @RenderSection("Head", false)
+    <title>@ViewBag.Title -  Simple Blog</title>
+    @Styles.Render("~/styles")
+</head>
+<body>
+    <header>
+        <h1>
+            <img src="http://www.trakya.edu.tr/admin/tools/theme/www_v2/images/logo/tr/logo.png" />
+            <a href="@Url.RouteUrl("Home")">Simple Blog</a>
+            <i class="glyphicon glyphicon-bell"></i>
+        </h1>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p>Welcome back, @User.Identity.Name</p>
+
+            <a href="@Url.RouteUrl("Logout")">Logout</a>
+
+            if (User.IsInRole("admin"))
+            {
+                <a href="@Url.Action("Index","Posts",new { area="admin"})">View posts in admin panel</a>
+            }
+        }
+        else
+        {
+            <a href="@Url.RouteUrl("Login")">Login</a>
+        }
+
+
+
+    </header>
+    @RenderBody()
+
+    <footer>
+        This page is under construction now ! <br />
+        &copy; @DateTime.Now.Year - Isma
+        <br />
+        
+        All rights reserved.
+
+    </footer>
+    @Scripts.Render("~/scripts")
+    @RenderSection("Scripts", false)
+
+</body>
+</html>*@
