@@ -17,6 +17,7 @@
         <h1>
             <img src="http://www.trakya.edu.tr/admin/tools/theme/www_v2/images/logo/tr/logo.png" />
             <a href="@Url.RouteUrl("Home")">Simple Blog</a>
+            <i class="glyphicon glyphicon-bell"></i>
         </h1>
         <a href="@Url.RouteUrl("Login")">Login</a>
     </header>
@@ -30,6 +31,7 @@
         This page is under construction now ! <br />
         &copy; @DateTime.Now.Year - Isma
     </footer>
+    @Scripts.Render("~/scripts")
     @RenderSection("Scripts", false)
 
 </body>
