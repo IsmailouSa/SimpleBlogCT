@@ -12,7 +12,7 @@ namespace SimpleBlog.Areas.Admin.Controllers
         // GET: Admin/Posts
         public ActionResult Index()
         {
-            return Content("Admin Area Posts Controller Index Action");
+            return View();
         }
     }
 }
