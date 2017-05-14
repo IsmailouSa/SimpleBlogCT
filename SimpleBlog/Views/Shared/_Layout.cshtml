@@ -2,47 +2,6 @@
 @{
     Layout = null;
 }
-
-<!DOCTYPE html>
-
-<html>
-<head runat="server">
-    <meta name="viewport" content="width=device-width" />
-    @RenderSection("Head", false)
-    <title>@ViewBag.Title - Simple Blog</title>
-    @Styles.Render("~/styles")
-</head>
-<body>
-    <header>
-        <h1>
-            <img src="http://www.trakya.edu.tr/admin/tools/theme/www_v2/images/logo/tr/logo.png" />
-            <a href="@Url.RouteUrl("Home")">Simple Blog</a>
-            <i class="glyphicon glyphicon-bell"></i>
-        </h1>
-        <a href="@Url.RouteUrl("Login")">Login</a>
-    </header>
-    @RenderBody()
-    @*<form method="post">
-            <input type="text" name="Username" />
-            <input type="password" name="Password" />
-            <input type="submit" />
-        </form>*@
-    <footer>
-        This page is under construction now ! <br />
-        &copy; @DateTime.Now.Year - Isma
-    </footer>
-    @Scripts.Render("~/scripts")
-    @RenderSection("Scripts", false)
-
-</body>
-</html>
-
-
-
-@*@using System.Web.Optimization
-@{
-    Layout = null;
-}
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,7 +42,7 @@
         This page is under construction now ! <br />
         &copy; @DateTime.Now.Year - Isma
         <br />
-        
+
         All rights reserved.
 
     </footer>
@@ -91,4 +50,47 @@
     @RenderSection("Scripts", false)
 
 </body>
+</html>
+
+
+@*@using System.Web.Optimization
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    @RenderSection("Head", false)
+    <title>@ViewBag.Title - Simple Blog</title>
+    @Styles.Render("~/styles")
+</head>
+<body>
+    <header>
+        <h1>
+            <img src="http://www.trakya.edu.tr/admin/tools/theme/www_v2/images/logo/tr/logo.png" />
+            <a href="@Url.RouteUrl("Home")">Simple Blog</a>
+            <i class="glyphicon glyphicon-bell"></i>
+        </h1>
+        <a href="@Url.RouteUrl("Login")">Login</a>
+    </header>
+    @RenderBody()
+    <form method="post">
+            <input type="text" name="Username" />
+            <input type="password" name="Password" />
+            <input type="submit" />
+        </form>
+    <footer>
+        This page is under construction now ! <br />
+        &copy; @DateTime.Now.Year - Isma
+    </footer>
+    @Scripts.Render("~/scripts")
+    @RenderSection("Scripts", false)
+
+</body>
 </html>*@
+
+
+

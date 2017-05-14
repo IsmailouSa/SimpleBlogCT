@@ -21,9 +21,45 @@ namespace SimpleBlog.Areas.Admin.Controllers
             return View(new UsersIndex() { Users = users });
         }
 
+        private void SyncRoles(IList<RoleCheckBox> checkBoxes, IList<Role> roles)
+        {
+            var selectedRoles = new List<Role>();
+
+
+            foreach (var role in Database.Session.Query<Role>())
+            {
+                var checkBox = checkBoxes.Single(c => c.Id == role.Id);
+                checkBox.Name = role.Name;
+
+                if (checkBox.IsChecked)
+                    selectedRoles.Add(role);
+            }
+
+
+            foreach (var toAdd in selectedRoles.Where(p => !roles.Contains(p)))
+            {
+                roles.Add(toAdd);
+            }
+
+            foreach (var toRemove in roles.Where(p => !selectedRoles.Contains(p)).ToList())
+            {
+                roles.Remove(toRemove);
+            }
+
+
+        }
+
         public ActionResult New()
         {
-            return View(new UsersNew { });
+            return View(new UsersNew
+            {
+                Roles = Database.Session.Query<Role>().Select(
+                    role => new RoleCheckBox()
+                    {
+                        Id = role.Id,
+                        Name = role.Name
+                    }).ToList()
+            });
         }
         [HttpPost]
         public ActionResult New(UsersNew form)
@@ -37,6 +73,8 @@ namespace SimpleBlog.Areas.Admin.Controllers
                 Email = form.Email,
                 Username = form.Username
             };
+
+            SyncRoles(form.Roles, user.Roles);
             user.SetPassword(form.Password);
             Database.Session.Save(user);
 
@@ -52,7 +90,15 @@ namespace SimpleBlog.Areas.Admin.Controllers
             return View(new UsersEdit
             {
                 Username = user.Username,
-                Email = user.Email
+                Email = user.Email,
+                Roles = Database.Session.Query<Role>().Select(
+                        role => new RoleCheckBox()
+                        {
+                            Id = role.Id,
+                            Name = role.Name,
+                            IsChecked = user.Roles.Contains(role)
+
+                        }).ToList()
             });
         }
 
@@ -62,8 +108,9 @@ namespace SimpleBlog.Areas.Admin.Controllers
             var user = Database.Session.Load<User>(id);
             if (User == null)
                 return HttpNotFound();
+            SyncRoles(form.Roles, user.Roles);
 
-            if(Database.Session.Query<User>().Any(u => u.Username == form.Username && u.Id != id))
+            if (Database.Session.Query<User>().Any(u => u.Username == form.Username && u.Id != id))
                 ModelState.AddModelError("Username", "Username must be unique");
 
             if (!ModelState.IsValid)

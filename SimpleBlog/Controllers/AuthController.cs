@@ -52,5 +52,11 @@ namespace SimpleBlog.Controllers
             }
 
         }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToRoute("Home");
+        }
     }
 }
